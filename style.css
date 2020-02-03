@@ -84,6 +84,9 @@ footer a:hover{
 nav>div>ul>li>a{
 	color: #ffffff !important;
 }
+nav>div>ul>li>a:hover{
+	color: #807c7c !important;
+}
 
 nav.change-menu{
 	background-color: rgb(0,0,0.5);
