@@ -1,2 +1,0 @@
-# mutende.github.io
-portfolio
