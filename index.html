@@ -1,401 +1,1040 @@
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title>Mutende</title>
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <meta content="Elvis, Mutende, Ian, Software Developer, Programming, Code, Data Science, Web Developer" name="keywords">
-  <meta content="Self-motivated developer and always working towards achieving the set goals and business objectives with perfect technical and problem-solving skills. Furthermore, passionate about new technolgies." name="description">
-  <meta name="author" content="Elvis Mutende">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Elvis Mutende — Senior Software Engineer</title>
+  <meta name="description" content="Senior Software Engineer building distributed backend systems in fintech and telecom — Nairobi, Kenya.">
+  <meta property="og:title" content="Elvis Mutende — Senior Software Engineer">
+  <meta property="og:description" content="Backend systems architect powering millions of transactions across East Africa.">
+  <meta property="og:type" content="website">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
 
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
-  <!-- Favicons -->
-  <link href="img/favicon.png" rel="icon">
-  <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', system-ui, sans-serif; background: #07080f; color: #fff; overflow-x: hidden; }
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Montserrat:300,400,500,700" rel="stylesheet">
+    /* ── Gradient helpers ── */
+    .g-text {
+      background: linear-gradient(135deg, #818cf8 0%, #a78bfa 50%, #c4b5fd 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .g-bg { background: linear-gradient(135deg, #6366f1, #8b5cf6); }
 
-  <!-- Bootstrap CSS File -->
-  <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    /* ── Glass cards ── */
+    .card {
+      background: rgba(12, 13, 30, 0.85);
+      border: 1px solid rgba(99, 102, 241, 0.18);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+    }
+    .card:hover {
+      border-color: rgba(99, 102, 241, 0.45);
+      box-shadow: 0 8px 32px rgba(99, 102, 241, 0.12);
+      transform: translateY(-3px);
+    }
 
-  <!-- Libraries CSS Files -->
-  <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-  <link href="lib/animate/animate.min.css" rel="stylesheet">
+    /* ── Skill pill ── */
+    .pill {
+      background: rgba(99, 102, 241, 0.08);
+      border: 1px solid rgba(99, 102, 241, 0.22);
+      color: #a5b4fc;
+      transition: background 0.2s, border-color 0.2s, color 0.2s;
+    }
+    .pill:hover {
+      background: rgba(99, 102, 241, 0.2);
+      border-color: rgba(99, 102, 241, 0.5);
+      color: #c4b5fd;
+    }
 
-  <!-- Main Stylesheet File -->
-  <link href="css/style.css" rel="stylesheet">
+    /* ── Tech tag (tiny) ── */
+    .tag {
+      background: rgba(7, 8, 15, 0.9);
+      border: 1px solid rgba(99, 102, 241, 0.18);
+      color: #94a3b8;
+      font-size: 0.7rem;
+      padding: 2px 8px;
+      border-radius: 999px;
+      white-space: nowrap;
+    }
 
-  
+    /* ── Nav underline hover ── */
+    .nav-a {
+      position: relative;
+      color: #94a3b8;
+      transition: color 0.2s;
+    }
+    .nav-a::after {
+      content: '';
+      position: absolute;
+      left: 0; bottom: -3px;
+      width: 0; height: 2px;
+      background: linear-gradient(90deg, #6366f1, #a78bfa);
+      transition: width 0.3s;
+    }
+    .nav-a:hover { color: #c4b5fd; }
+    .nav-a:hover::after { width: 100%; }
+
+    /* ── Timeline dot ── */
+    .t-dot {
+      width: 13px; height: 13px;
+      background: #6366f1;
+      border: 2px solid #a78bfa;
+      border-radius: 50%;
+      box-shadow: 0 0 14px rgba(99, 102, 241, 0.7);
+      flex-shrink: 0;
+      transition: transform 0.25s;
+    }
+    .t-row:hover .t-dot { transform: scale(1.4); }
+
+    /* ── Decorative section number ── */
+    .sec-num {
+      position: absolute;
+      right: 0; top: -1.5rem;
+      font-size: clamp(5rem, 14vw, 11rem);
+      font-weight: 900;
+      line-height: 1;
+      pointer-events: none;
+      user-select: none;
+      background: linear-gradient(135deg, rgba(99,102,241,0.07), rgba(167,139,250,0.02));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* ── Ambient glow orb ── */
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(90px);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── Grid background ── */
+    .grid-bg {
+      background-image:
+        linear-gradient(rgba(99,102,241,0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(99,102,241,0.035) 1px, transparent 1px);
+      background-size: 52px 52px;
+    }
+
+    /* ── Stat card ── */
+    .stat-c {
+      background: linear-gradient(135deg, rgba(99,102,241,0.1), rgba(139,92,246,0.08));
+      border: 1px solid rgba(99,102,241,0.2);
+    }
+
+    /* ── Animations ── */
+    @keyframes fadeUp   { from { opacity:0; transform:translateY(26px); } to { opacity:1; transform:translateY(0); } }
+    @keyframes fadeIn   { from { opacity:0; } to { opacity:1; } }
+    @keyframes float    { 0%,100% { transform:translateY(0); } 50% { transform:translateY(-11px); } }
+    @keyframes glowPulse{ 0%,100% { box-shadow:0 0 18px rgba(99,102,241,0.3); } 50% { box-shadow:0 0 38px rgba(99,102,241,0.65); } }
+    @keyframes blink    { 0%,100% { opacity:1; } 50% { opacity:0; } }
+
+    .a-up-1 { animation: fadeUp 0.75s ease 0.15s both; }
+    .a-up-2 { animation: fadeUp 0.75s ease 0.3s  both; }
+    .a-up-3 { animation: fadeUp 0.75s ease 0.45s both; }
+    .a-up-4 { animation: fadeUp 0.75s ease 0.6s  both; }
+    .a-in   { animation: fadeIn 1s ease 0.5s both; }
+    .a-float{ animation: float 6s ease-in-out infinite; }
+    .a-glow  { animation: glowPulse 3s ease-in-out infinite; }
+
+    /* ── Scroll reveal ── */
+    .reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.65s ease, transform 0.65s ease; }
+    .revealed { opacity: 1 !important; transform: translateY(0) !important; }
+
+    /* ── Mobile menu ── */
+    #m-menu { display: none; }
+    #m-menu.open { display: flex; }
+
+    /* ── Scrollbar ── */
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: #07080f; }
+    ::-webkit-scrollbar-thumb { background: #6366f1; border-radius: 3px; }
+
+    /* ── Buttons ── */
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 12px 24px; border-radius: 12px;
+      font-weight: 600; font-size: 0.9rem;
+      background: linear-gradient(135deg, #6366f1, #8b5cf6);
+      color: #fff;
+      transition: opacity 0.2s, box-shadow 0.2s;
+      text-decoration: none;
+    }
+    .btn-primary:hover { opacity: 0.9; box-shadow: 0 6px 24px rgba(99,102,241,0.35); }
+
+    .btn-ghost {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 12px 24px; border-radius: 12px;
+      font-weight: 600; font-size: 0.9rem;
+      border: 1px solid rgba(99,102,241,0.28);
+      background: rgba(99,102,241,0.05);
+      color: #cbd5e1;
+      transition: color 0.2s, border-color 0.2s, background 0.2s;
+      text-decoration: none;
+    }
+    .btn-ghost:hover { color: #fff; border-color: rgba(99,102,241,0.55); background: rgba(99,102,241,0.1); }
+
+    /* ── Avatar ── */
+    .avatar-wrap {
+      position: relative;
+      width: 300px; height: 300px;
+      flex-shrink: 0;
+    }
+    @media (min-width: 640px) {
+      .avatar-wrap { width: 340px; height: 340px; }
+    }
+    .avatar-img {
+      position: absolute; inset: 0;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 3px solid rgba(99,102,241,0.4);
+    }
+    .avatar-img img { width: 100%; height: 100%; object-fit: cover; object-position: top center; }
+
+    .badge {
+      position: absolute;
+      display: flex; align-items: center; gap: 6px;
+      padding: 7px 12px; border-radius: 12px;
+      font-size: 0.7rem; font-weight: 600;
+      white-space: nowrap;
+    }
+  </style>
 </head>
 
-<body>
+<body class="bg-[#07080f]">
 
-  <!--==========================
-  Header
-  ============================-->
-  <header id="header" class="fixed-top">
-    <div class="container-fluid">
+  <!-- NAV -->
+  <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 px-6 py-4 flex items-center justify-between transition-all duration-300"
+       style="background:rgba(7,8,15,0.88); backdrop-filter:blur(22px); border-bottom:1px solid rgba(99,102,241,0.1);">
 
-      <div class="logo float-left">
-        <!-- Uncomment below if you prefer to use an image logo -->
-        <!-- <h1 class="text-light"><a href="#header"><span>NewBiz</span></a></h1> -->
-        <a href="#intro" class="scrollto"><img src="img/logo.png" alt="Mutende" class="img-fluid"> <span class="px-2">Mutende</span></a>
-      </div>
+    <a href="#home" class="text-xl font-black g-text tracking-tight select-none">EM.</a>
 
-      <nav class="main-nav float-right d-none d-lg-block">
-        <ul>
-          <li class="wow slideInRight active" data-wow-duration="2s"><a href="#intro">Home</a></li>
-          <li><a class="wow slideInRight" data-wow-duration="2s" href="#about">About</a></li>
-          <li><a class="wow slideInRight" data-wow-duration="2s" href="#skills">Skills</a></li>
-          <li><a class="wow slideInRight" data-wow-duration="2s" href="#project">Projects</a></li>
-          <li><a class="wow slideInRight" data-wow-duration="2s" href="#contact">Contact</a></li>
-        </ul>
-      </nav><!-- .main-nav -->
-
+    <div class="hidden md:flex items-center gap-7">
+      <a href="#about"        class="nav-a text-sm font-medium">About</a>
+      <a href="#experience"   class="nav-a text-sm font-medium">Experience</a>
+      <a href="#skills"       class="nav-a text-sm font-medium">Expertise</a>
+      <a href="#projects"     class="nav-a text-sm font-medium">Projects</a>
+      <a href="#contact"      class="nav-a text-sm font-medium">Contact</a>
+      <a href="assets/docs/Elvis%20Mutende%20-%20Sr%20Eng%20CV.pdf" download="Elvis Mutende - Sr Eng CV.pdf" class="btn-primary text-sm px-4 py-2 rounded-lg">
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5 5-5M12 4v11"/>
+        </svg>
+        Download CV
+      </a>
     </div>
-  </header><!-- #header -->
 
-  <!--==========================
-    Intro Section
-  ============================-->
-  <section id="intro">
-    <div class="container">
-      <div class="landing-text ml-5">
-        <h1 class="animTitle text-center" data-wow-duration="2s">Elvis Mutende</h1>
-        <h3 class="wow bounceInUp" data-wow-duration="2s">Code with passion, not for money</h3>
-        <a href="#about" class="btn btn-light wow bounceInUp " data-wow-duration="2s">Who is Elvis <span class="ml-2"><i class="fa fa-chevron-right" aria-hidden="true"></i></span></a>
-      </div>
-      </div>
+    <button id="ham" onclick="toggleMenu()" class="md:hidden text-slate-400 hover:text-white p-1" aria-label="Menu">
+      <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+      </svg>
+    </button>
+  </nav>
 
+  <!-- Mobile menu -->
+  <div id="m-menu" class="fixed top-[65px] left-0 right-0 z-40 flex-col py-4"
+       style="background:rgba(7,8,15,0.97); backdrop-filter:blur(22px); border-bottom:1px solid rgba(99,102,241,0.1);">
+    <a href="#about"        onclick="closeMenu()" class="px-6 py-3 text-slate-300 font-medium border-b border-slate-800/60 hover:text-white transition-colors">About</a>
+    <a href="#experience"   onclick="closeMenu()" class="px-6 py-3 text-slate-300 font-medium border-b border-slate-800/60 hover:text-white transition-colors">Experience</a>
+    <a href="#skills"       onclick="closeMenu()" class="px-6 py-3 text-slate-300 font-medium border-b border-slate-800/60 hover:text-white transition-colors">Expertise</a>
+    <a href="#projects"     onclick="closeMenu()" class="px-6 py-3 text-slate-300 font-medium border-b border-slate-800/60 hover:text-white transition-colors">Projects</a>
+    <a href="#contact"      onclick="closeMenu()" class="px-6 py-3 text-slate-300 font-medium border-b border-slate-800/60 hover:text-white transition-colors">Contact</a>
+    <div class="px-6 pt-4">
+      <a href="assets/docs/Elvis%20Mutende%20-%20Sr%20Eng%20CV.pdf" download="Elvis Mutende - Sr Eng CV.pdf" class="btn-primary w-full justify-center" onclick="closeMenu()">Download CV</a>
     </div>
-  </section><!-- #intro -->
+  </div>
 
-  <main id="main">
 
-    <!--==========================
-      About Us Section
-    ============================-->
-    <section id="about">
-      <div class="container">
+  <!-- HERO -->
+  <section id="home" class="relative min-h-screen flex items-center grid-bg overflow-hidden pt-20">
+    <div class="orb w-[520px] h-[520px] bg-indigo-600/[0.13] -top-32 -left-48"></div>
+    <div class="orb w-[400px] h-[400px] bg-violet-600/[0.1]  bottom-0 -right-32"></div>
+    <div class="orb w-[260px] h-[260px] bg-indigo-500/[0.07] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"></div>
 
-        <header class="section-header">
-          <h3>About</h3>
-          <p>Trust in thy self | Think Code think Solutions.</p>
-        </header>
+    <div class="relative z-10 max-w-7xl mx-auto px-6 py-16 w-full">
+      <div class="flex flex-col lg:flex-row items-center gap-14 lg:gap-20">
 
-        <div class="row about-container">
-
-          <div class="col-lg-6 content order-lg-1 order-2">
-            <h4><strong>OBJECTIVE</strong></h4>
-          <p>Self-motivated developer and always working towards achieving the set goals and business objectives with perfect technical and problem-solving skills. Furthermore, passionate about new technolgies.</p>
-            <div class="icon-box wow fadeInUp">
-              <div class="icon"><i class="fa fa-suitcase"></i></div>
-              <h4 class="title"><a href="">Professional Profile</a></h4>
-              <p class="description">
-                Exceptionally well organized, team player, resourceful and highly motivated with the ability to handle multiple projects and produce timely, high quality work. I am ready to learn and adjust to new environments.
-              </p>
-            </div>
-
+        <!-- Copy -->
+        <div class="flex-1 text-center lg:text-left">
+          <div class="a-up-1 inline-flex items-center gap-2 mb-5 px-4 py-1.5 rounded-full text-xs font-semibold tracking-widest text-indigo-300 uppercase"
+               style="background:rgba(99,102,241,0.1); border:1px solid rgba(99,102,241,0.22);">
+            <span class="w-1.5 h-1.5 rounded-full bg-indigo-400" style="animation:blink 2s step-end infinite;"></span>
+            Senior Software Engineer
           </div>
 
-          <div class="col-lg-6 background order-lg-2 order-1 wow fadeInUp">
-            <img src="img/elvis.jpg" class="img-fluid" alt="">
-          </div>
-        </div>
-      </div>
-    </section><!-- #about -->
+          <h1 class="a-up-2 text-5xl sm:text-6xl lg:text-7xl font-black leading-[1.04] text-white mb-6">
+            Elvis<br><span class="g-text">Mutende.</span>
+          </h1>
 
-    <!-- fixed-background -->
-<div id="fixed"></div>
+          <p class="a-up-3 text-slate-400 text-lg leading-relaxed max-w-[520px] mx-auto lg:mx-0 mb-8">
+            Backend systems architect with <span class="yrs-exp">5+</span> years building distributed, high-performance APIs in fintech &amp; telecom —
+            powering <span class="text-indigo-400 font-semibold">millions of transactions</span> across East Africa.
+          </p>
 
-    <!--==========================
-      skills Section
-    ============================-->
-    
-    <section id="skills" class="section-bg">
-      <div class="container">
-
-        <header class="section-header">
-          <h3>Technical & Professional Skills</h3>
-          <p>Code for passion not for money. Personal Abilities</p>
-        </header>
-
-        <div class="row">
-          <div class="col-md-6">
-              <h4><strong>PROFESSIONAL SKILLS</strong></h4>
-              <ul class="list-unstyled">
-      
-                <li><span><i class="fa fa-check mr-3 mt-3" aria-hidden="true"></i><span>Software development.
-                   <div class="progress">
-                    <div class="progress-bar bg-info" role="progressbar" style="width: 100%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                </li>
-                <li><span><i class="fa fa-check mr-3 mt-3" aria-hidden="true"></i><span>Teamwork.
-                   <div class="progress">
-                    <div class="progress-bar bg-info" role="progressbar" style="width: 98%;" aria-valuenow="98" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                </li>
-                <li><span><i class="fa fa-check mr-3 mt-3" aria-hidden="true"></i><span>Problem solving.
-                   <div class="progress">
-                    <div class="progress-bar bg-info" role="progressbar" style="width: 95%;" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                </li>
-                <li><span><i class="fa fa-check mr-3 mt-3" aria-hidden="true"></i><span>Time manager.
-                   <div class="progress">
-                    <div class="progress-bar bg-info" role="progressbar" style="width: 90%;" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                </li>
-                <li><span><i class="fa fa-check mr-3 mt-3" aria-hidden="true"></i><span>Discipline Level.
-                   <div class="progress">
-                    <div class="progress-bar bg-info" role="progressbar" style="width: 98%;" aria-valuenow="98" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                </li>
-                <li><span><i class="fa fa-check mr-3 mt-3" aria-hidden="true"></i><span>Code debugging and maintenance.
-                   <div class="progress">
-                    <div class="progress-bar bg-info" role="progressbar" style="width: 98%;" aria-valuenow="98" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                </li>
-                <li><span><i class="fa fa-check mr-3 mt-3" aria-hidden="true"></i><span>Computer Hardware troubleshooting
-                   <div class="progress">
-                    <div class="progress-bar bg-info" role="progressbar" style="width: 40%;" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                </li>
-      
-              </ul>
-      
-          </div>
-          <div class="col-md-6">
-              <h4><strong>TECHNICAL SKILLS</strong></h4>
-      
-              <ul class="list-unstyled">
-                <li><span><i class="fa fa-check mr-3" aria-hidden="true"></i><span>PHP, Python, JAVA</li>
-                  <div class="progress">
-                  <div class="progress-bar" role="progressbar" style="width: 40%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="300">PHP 90%</div>
-                  <div class="progress-bar bg-info" role="progressbar" style="width: 35%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100">Python 85%</div>
-                  <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">Java 80%</div>
-                </div>
-                <li><span><i class="fa fa-check mr-3 mt-3" aria-hidden="true"></i><span> Django,Laravel Framework, Spring Boot</li>
-                  <div class="progress">
-                    <div class="progress-bar" role="progressbar" style="width: 40%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100">Laravel 80%</div>
-                    <div class="progress-bar bg-info" role="progressbar" style="width: 35%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100">Django 75%</div>
-                    <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">Spring Boot 40%</div>
-                  </div>
-                <li><span><i class="fa fa-check mr-3 mt-3" aria-hidden="true"></i><span>REST APIs</li>
-                  <div class="progress">
-                    <div class="progress-bar bg-info" role="progressbar" style="width: 90%;" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">90%</div>
-                  </div>
-                <li><span><i class="fa fa-check mr-3 mt-3" aria-hidden="true"></i><span>MySQL and Postgress Database.
-                  <div class="progress">
-                    <div class="progress-bar bg-warning" role="progressbar" style="width: 90%;" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">Databases 90%</div>
-                  </div>
-                </li>
-
-                <li><span><i class="fa fa-check mr-3 mt-3" aria-hidden="true"></i><span>HTML, CSS, SASS and JavaScript.
-                  <div class="progress">
-                    <div class="progress-bar bg-danger" role="progressbar" style="width: 100%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">Web Development 100%</div>
-                  </div>
-                </li>
-                <li><span><i class="fa fa-check mr-3 mt-3" aria-hidden="true"></i><span>Vue Js, React Js (Front end Technologies)
-                  <div class="progress">
-                    <div class="progress-bar bg-primary" role="progressbar" style="width: 90%;" aria-valuenow="98" aria-valuemin="0" aria-valuemax="100">UX/UI 90%</div>
-                  </div>
-                </li>
-                <li><span><i class="fa fa-check mr-3 mt-3" aria-hidden="true"></i><span>Version Control (Git) & Continuous Deployment
-                  <div class="progress">
-                    <div class="progress-bar bg-info" role="progressbar" style="width: 90%;" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">90%</div>
-                  </div>
-                </li>
-                <li><span><i class="fa fa-check mr-3 mt-3" aria-hidden="true"></i><span>Linux Operating System.
-                  <div class="progress">
-                    <div class="progress-bar bg-info" role="progressbar" style="width: 90%;" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">90%</div>
-                  </div>
-                </li>
-                <li><span><i class="fa fa-check mr-3 mt-3" aria-hidden="true"></i><span>WordPress.
-                  <div class="progress">
-                    <div class="progress-bar bg-info" role="progressbar" style="width: 90%;" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">90%</div>
-                  </div>
-                </li>
-                <li><span><i class="fa fa-check mr-3 mt-3" aria-hidden="true"></i><span>Basic networking skills.
-                  <div class="progress">
-                    <div class="progress-bar bg-info" role="progressbar" style="width: 50%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">50%</div>
-                  </div>
-                </li>
-              </ul>
-
-<!--              
-              <div class="progress">
-                <div class="progress-bar bg-warning" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-              <div class="progress">
-                <div class="progress-bar bg-danger" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-              </div> -->
-      
-          </div>
-      
-        </div>
-
-      </div>
-    </section><!-- #services -->
-
-    <!--==========================
-      Project Section
-    ============================-->
-
-  
-    <section id="project">
-      <div class="container">
-
-        <div class="section-header">
-          <h3>Project Section</h3>
-        </div>
-
-        <div class="row no-gutters clients-wrap clearfix wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
-  
-          <div class="col-lg-3 col-md-4 col-xs-6">
-            <div class="client-logo">
-              <a href="https://analyticasoft.co.ke/" target="_blank">
-              <img src="img/worksite.PNG" class="img-fluid" alt="">
-              <p>Job Alert Systems</p>
+          <div class="a-up-4 flex flex-wrap gap-3 justify-center lg:justify-start mb-12">
+            <a href="#experience" class="btn-primary">
+              View Work
+              <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4-4 4M3 12h18"/>
+              </svg>
             </a>
+            <a href="#contact" class="btn-ghost">Get in Touch</a>
+            <a href="assets/docs/Elvis%20Mutende%20-%20Sr%20Eng%20CV.pdf" download="Elvis Mutende - Sr Eng CV.pdf" class="btn-ghost">
+              <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5 5-5M12 4v11"/>
+              </svg>
+              Download CV
+            </a>
+          </div>
+
+          <div class="a-up-4 flex flex-wrap justify-center lg:justify-start gap-8">
+            <div class="text-center lg:text-left">
+              <div id="yrs-exp" class="text-3xl font-black text-white">5+</div>
+              <div class="text-[11px] text-slate-500 mt-0.5 tracking-wide">Years Experience</div>
+            </div>
+            <div class="hidden lg:block w-px bg-slate-800"></div>
+            <div class="text-center lg:text-left">
+              <div class="text-3xl font-black text-white">500K+</div>
+              <div class="text-[11px] text-slate-500 mt-0.5 tracking-wide">Monthly Transactions</div>
+            </div>
+            <div class="hidden lg:block w-px bg-slate-800"></div>
+            <div class="text-center lg:text-left">
+              <div class="text-3xl font-black text-white">1M+</div>
+              <div class="text-[11px] text-slate-500 mt-0.5 tracking-wide">Users Impacted</div>
+            </div>
+            <div class="hidden lg:block w-px bg-slate-800"></div>
+            <div class="text-center lg:text-left">
+              <div class="text-3xl font-black text-white">4</div>
+              <div class="text-[11px] text-slate-500 mt-0.5 tracking-wide">Companies</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Avatar -->
+        <div class="a-in flex-shrink-0 flex justify-center">
+          <div class="a-float">
+            <div class="avatar-wrap">
+              <div class="avatar-img a-glow">
+                <img src="assets/images/elvis.jpeg" alt="Elvis Mutende" loading="eager">
+              </div>
+              <div class="badge card text-indigo-300" style="right:-18px; top:24px;">
+                <span class="w-2 h-2 rounded-full bg-green-400" style="animation:blink 2s step-end infinite;"></span>
+                📍 Nairobi, Kenya
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2">
+      <span class="text-[10px] tracking-[0.2em] text-slate-700 uppercase">Scroll</span>
+      <div class="w-px h-9" style="background:linear-gradient(to bottom, rgba(99,102,241,0.5), transparent);"></div>
+    </div>
+  </section>
+
+
+  <!-- ABOUT -->
+  <section id="about" class="py-28 px-6 relative overflow-hidden">
+    <div class="orb w-96 h-96 bg-indigo-600/[0.07] top-0 right-0"></div>
+    <div class="max-w-7xl mx-auto relative z-10">
+      <div class="relative mb-14 overflow-hidden">
+        <span class="sec-num">01</span>
+        <span class="text-[11px] font-semibold tracking-[0.18em] text-indigo-400 uppercase block mb-2">About Me</span>
+        <h2 class="text-4xl md:text-5xl font-black text-white">Who I Am</h2>
+      </div>
+
+      <div class="max-w-3xl reveal">
+        <p class="text-slate-300 text-lg leading-relaxed mb-5">
+          I'm a <span class="text-white font-semibold">Senior Software Engineer</span> with <span class="yrs-exp">5+</span> years of experience designing
+          and scaling backend systems in fintech and telecom — sectors where reliability and performance are non-negotiable.
+        </p>
+        <p class="text-slate-400 leading-relaxed mb-5">
+          From engineering payment infrastructure at Safaricom PLC serving millions of Kenyans, to building
+          Credit-as-a-Service APIs at Tala, to shipping AI-powered lending and savings products — I thrive at the
+          intersection of complex technical problems and real-world financial impact.
+        </p>
+        <p class="text-slate-400 leading-relaxed mb-9">
+          I bring deep expertise in distributed systems, microservices architecture, and high-performance API design,
+          complemented by a proven track record of mentoring engineers and driving technical excellence at scale.
+        </p>
+        <div class="flex flex-wrap gap-2">
+          <span class="pill px-4 py-2 rounded-full text-sm font-medium">Backend Engineering</span>
+          <span class="pill px-4 py-2 rounded-full text-sm font-medium">Fintech Integrations</span>
+          <span class="pill px-4 py-2 rounded-full text-sm font-medium">Distributed Systems</span>
+          <span class="pill px-4 py-2 rounded-full text-sm font-medium">API Architecture</span>
+          <span class="pill px-4 py-2 rounded-full text-sm font-medium">System Design</span>
+          <span class="pill px-4 py-2 rounded-full text-sm font-medium">Microservices</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- EXPERIENCE -->
+  <section id="experience" class="py-28 px-6 relative" style="background:rgba(12,13,28,0.55);">
+    <div class="max-w-7xl mx-auto">
+      <div class="relative mb-14 overflow-hidden">
+        <span class="sec-num">02</span>
+        <span class="text-[11px] font-semibold tracking-[0.18em] text-indigo-400 uppercase block mb-2">Career</span>
+        <h2 class="text-4xl md:text-5xl font-black text-white">Experience</h2>
+      </div>
+
+      <div class="relative">
+        <div class="absolute left-[22px] top-4 bottom-4 w-px hidden md:block"
+             style="background:linear-gradient(to bottom, #6366f1 0%, rgba(99,102,241,0.06) 100%);"></div>
+
+        <div class="space-y-7">
+
+          <!-- Tala -->
+          <div class="t-row flex gap-8 md:gap-12 group reveal">
+            <div class="hidden md:flex flex-col items-center mt-3 relative z-10">
+              <div class="t-dot"></div>
+            </div>
+            <div class="card rounded-2xl p-8 flex-1">
+              <div class="flex flex-wrap items-start justify-between gap-4 mb-5">
+                <div>
+                  <div class="flex items-center gap-2 mb-1.5">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400" style="animation:blink 2.5s step-end infinite;"></span>
+                    <span class="text-xs text-emerald-400 font-medium tracking-wide">Current Role</span>
+                  </div>
+                  <h3 class="text-xl font-bold text-white">Senior Software Engineer</h3>
+                  <p class="text-indigo-400 font-semibold text-sm mt-1">Tala · Nairobi, Kenya</p>
+                </div>
+                <span class="text-xs text-slate-400 font-medium px-3 py-1 rounded-full"
+                      style="background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.07);">July 2022 – Present</span>
+              </div>
+              <ul class="space-y-3 mb-6">
+                <li class="flex gap-3 text-slate-400 text-sm leading-relaxed">
+                  <span class="text-indigo-500 mt-0.5 flex-shrink-0">▸</span>
+                  Designed and built <span class="text-slate-200 font-medium">&nbsp;Credit-as-a-Service APIs</span>, reducing partner onboarding from months to weeks — supporting 500K+ transactions monthly.
+                </li>
+                <li class="flex gap-3 text-slate-400 text-sm leading-relaxed">
+                  <span class="text-indigo-500 mt-0.5 flex-shrink-0">▸</span>
+                  Spearheaded backend architecture improvements for lending products, increasing scalability and reliability across the Kenyan market.
+                </li>
+                <li class="flex gap-3 text-slate-400 text-sm leading-relaxed">
+                  <span class="text-indigo-500 mt-0.5 flex-shrink-0">▸</span>
+                  Collaborated cross-functionally with product and data teams to align business needs with engineering delivery.
+                </li>
+                <li class="flex gap-3 text-slate-400 text-sm leading-relaxed">
+                  <span class="text-indigo-500 mt-0.5 flex-shrink-0">▸</span>
+                  Mentored junior engineers, improving onboarding speed and code quality across the team.
+                </li>
+              </ul>
+              <div class="flex flex-wrap gap-1.5">
+                <span class="tag">Kotlin</span><span class="tag">Java</span><span class="tag">Spring Boot</span>
+                <span class="tag">MariaDB</span><span class="tag">Microservices</span><span class="tag">Docker</span>
+                <span class="tag">CI/CD</span><span class="tag">Kafka</span><span class="tag">Redis</span>
+              </div>
             </div>
           </div>
 
-          <div class="col-lg-3 col-md-4 col-xs-6">
-            <div class="client-logo text-center">
-              <a href="https://thepeak.education/" target="_blank">
-              <img src="img/intro-img.svg" class="img-fluid" alt="">
-              <p>Learning Center</p>
+          <!-- Safaricom -->
+          <div class="t-row flex gap-8 md:gap-12 group reveal">
+            <div class="hidden md:flex flex-col items-center mt-3 relative z-10">
+              <div class="t-dot"></div>
+            </div>
+            <div class="card rounded-2xl p-8 flex-1">
+              <div class="flex flex-wrap items-start justify-between gap-4 mb-5">
+                <div>
+                  <h3 class="text-xl font-bold text-white">Financial Solutions Engineer</h3>
+                  <p class="text-indigo-400 font-semibold text-sm mt-1">Safaricom PLC · Nairobi, Kenya</p>
+                </div>
+                <span class="text-xs text-slate-400 font-medium px-3 py-1 rounded-full"
+                      style="background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.07);">Sept 2021 – July 2022</span>
+              </div>
+              <ul class="space-y-3 mb-6">
+                <li class="flex gap-3 text-slate-400 text-sm leading-relaxed">
+                  <span class="text-indigo-500 mt-0.5 flex-shrink-0">▸</span>
+                  Engineered backend logic for payment products used by <span class="text-slate-200 font-medium">&nbsp;millions of customers</span>.
+                </li>
+                <li class="flex gap-3 text-slate-400 text-sm leading-relaxed">
+                  <span class="text-indigo-500 mt-0.5 flex-shrink-0">▸</span>
+                  Digitised till &amp; paybill onboarding, cutting customer activation from <span class="text-slate-200 font-medium">&nbsp;3–14 days → 24 hours</span> — driving major adoption of new payment services.
+                </li>
+                <li class="flex gap-3 text-slate-400 text-sm leading-relaxed">
+                  <span class="text-indigo-500 mt-0.5 flex-shrink-0">▸</span>
+                  Developed robust APIs and integration flows with strict reliability &amp; compliance requirements.
+                </li>
+              </ul>
+              <div class="flex flex-wrap gap-1.5">
+                <span class="tag">Java</span><span class="tag">Spring Boot</span><span class="tag">MySQL</span>
+                <span class="tag">MongoDB</span><span class="tag">Docker</span><span class="tag">Kafka</span>
+                <span class="tag">Redis</span><span class="tag">RabbitMQ</span><span class="tag">CI/CD</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Lanstar -->
+          <div class="t-row flex gap-8 md:gap-12 group reveal">
+            <div class="hidden md:flex flex-col items-center mt-3 relative z-10">
+              <div class="t-dot"></div>
+            </div>
+            <div class="card rounded-2xl p-8 flex-1">
+              <div class="flex flex-wrap items-start justify-between gap-4 mb-5">
+                <div>
+                  <h3 class="text-xl font-bold text-white">Software Engineer</h3>
+                  <p class="text-indigo-400 font-semibold text-sm mt-1">Lanstar Technologies · Nairobi, Kenya</p>
+                </div>
+                <span class="text-xs text-slate-400 font-medium px-3 py-1 rounded-full"
+                      style="background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.07);">Sept 2020 – Aug 2021</span>
+              </div>
+              <ul class="space-y-3 mb-6">
+                <li class="flex gap-3 text-slate-400 text-sm leading-relaxed">
+                  <span class="text-indigo-500 mt-0.5 flex-shrink-0">▸</span>
+                  Designed and implemented a <span class="text-slate-200 font-medium">&nbsp;CRB integration microservice</span> for Saccos, enabling automated credit checks and loan risk assessment.
+                </li>
+                <li class="flex gap-3 text-slate-400 text-sm leading-relaxed">
+                  <span class="text-indigo-500 mt-0.5 flex-shrink-0">▸</span>
+                  Delivered multiple banking and Sacco system integrations, improving service automation across clients.
+                </li>
+              </ul>
+              <div class="flex flex-wrap gap-1.5">
+                <span class="tag">Spring Boot</span><span class="tag">MySQL</span>
+                <span class="tag">REST APIs</span><span class="tag">Microservices</span><span class="tag">React.js</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Zalego -->
+          <div class="t-row flex gap-8 md:gap-12 group reveal">
+            <div class="hidden md:flex flex-col items-center mt-3 relative z-10">
+              <div class="t-dot"></div>
+            </div>
+            <div class="card rounded-2xl p-8 flex-1">
+              <div class="flex flex-wrap items-start justify-between gap-4 mb-5">
+                <div>
+                  <h3 class="text-xl font-bold text-white">Web Developer &amp; Instructor</h3>
+                  <p class="text-indigo-400 font-semibold text-sm mt-1">Zalego Institute · Nairobi, Kenya</p>
+                </div>
+                <span class="text-xs text-slate-400 font-medium px-3 py-1 rounded-full"
+                      style="background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.07);">Jul 2019 – Sept 2020</span>
+              </div>
+              <ul class="space-y-3 mb-6">
+                <li class="flex gap-3 text-slate-400 text-sm leading-relaxed">
+                  <span class="text-indigo-500 mt-0.5 flex-shrink-0">▸</span>
+                  Built web applications with Laravel and JavaScript frameworks in a collaborative team environment.
+                </li>
+                <li class="flex gap-3 text-slate-400 text-sm leading-relaxed">
+                  <span class="text-indigo-500 mt-0.5 flex-shrink-0">▸</span>
+                  Trained <span class="text-slate-200 font-medium">50+ students</span> in PHP, Laravel, and web development best practices.
+                </li>
+                <li class="flex gap-3 text-slate-400 text-sm leading-relaxed">
+                  <span class="text-indigo-500 mt-0.5 flex-shrink-0">▸</span>
+                  Shortlisted among the <span class="text-slate-200 font-medium">top web instructors</span> of 2020.
+                </li>
+              </ul>
+              <div class="flex flex-wrap gap-1.5">
+                <span class="tag">PHP</span><span class="tag">Laravel</span>
+                <span class="tag">JavaScript</span><span class="tag">MySQL</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- SKILLS -->
+  <section id="skills" class="py-28 px-6 relative overflow-hidden">
+    <div class="orb w-[380px] h-[380px] bg-violet-600/[0.09] top-0 right-0 -translate-y-1/3"></div>
+    <div class="orb w-[280px] h-[280px] bg-indigo-600/[0.07] bottom-0 left-0"></div>
+
+    <div class="max-w-7xl mx-auto relative z-10">
+      <div class="relative mb-14 overflow-hidden">
+        <span class="sec-num">03</span>
+        <span class="text-[11px] font-semibold tracking-[0.18em] text-indigo-400 uppercase block mb-2">Tech Stack</span>
+        <h2 class="text-4xl md:text-5xl font-black text-white">Expertise</h2>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+
+        <div class="card rounded-2xl p-6 reveal">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="w-10 h-10 rounded-xl g-bg flex items-center justify-center text-lg flex-shrink-0">⚡</div>
+            <h3 class="text-white font-bold">Languages</h3>
+          </div>
+          <p class="text-slate-500 text-xs leading-relaxed mb-4">
+            Polyglot by necessity — each language chosen for the right job. Java and Kotlin power mission-critical
+            financial services; Python drives data and AI workflows; PHP enabled rapid web delivery early in my career.
+          </p>
+          <div class="flex flex-wrap gap-2">
+            <span class="pill px-3 py-1.5 rounded-lg text-sm font-medium">Java</span>
+            <span class="pill px-3 py-1.5 rounded-lg text-sm font-medium">Kotlin</span>
+            <span class="pill px-3 py-1.5 rounded-lg text-sm font-medium">Python</span>
+            <span class="pill px-3 py-1.5 rounded-lg text-sm font-medium">PHP</span>
+          </div>
+        </div>
+
+        <div class="card rounded-2xl p-6 reveal">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="w-10 h-10 rounded-xl g-bg flex items-center justify-center text-lg flex-shrink-0">🔧</div>
+            <h3 class="text-white font-bold">Frameworks</h3>
+          </div>
+          <p class="text-slate-500 text-xs leading-relaxed mb-4">
+            Spring Boot is the backbone of every production service I've built — from high-throughput payment APIs to
+            lending platforms. Its maturity and ecosystem make it the standard for enterprise-grade backend reliability.
+          </p>
+          <div class="flex flex-wrap gap-2">
+            <span class="pill px-3 py-1.5 rounded-lg text-sm font-medium">Spring Boot</span>
+            <span class="pill px-3 py-1.5 rounded-lg text-sm font-medium">Laravel</span>
+          </div>
+        </div>
+
+        <div class="card rounded-2xl p-6 reveal">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="w-10 h-10 rounded-xl g-bg flex items-center justify-center text-lg flex-shrink-0">🗄️</div>
+            <h3 class="text-white font-bold">Databases</h3>
+          </div>
+          <p class="text-slate-500 text-xs leading-relaxed mb-4">
+            Strong command of both relational and document stores — picking the right model matters. Transactional
+            financial data demands SQL precision; flexible document models unlock speed for dynamic, schema-less workloads.
+          </p>
+          <div class="flex flex-wrap gap-2">
+            <span class="pill px-3 py-1.5 rounded-lg text-sm font-medium">MySQL</span>
+            <span class="pill px-3 py-1.5 rounded-lg text-sm font-medium">MariaDB</span>
+            <span class="pill px-3 py-1.5 rounded-lg text-sm font-medium">MongoDB</span>
+            <span class="pill px-3 py-1.5 rounded-lg text-sm font-medium">PostgreSQL</span>
+          </div>
+        </div>
+
+        <div class="card rounded-2xl p-6 reveal">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="w-10 h-10 rounded-xl g-bg flex items-center justify-center text-lg flex-shrink-0">🏗️</div>
+            <h3 class="text-white font-bold">Architecture</h3>
+          </div>
+          <p class="text-slate-500 text-xs leading-relaxed mb-4">
+            Where I spend most of my thinking. Designing systems that hold up under real-world pressure — handling
+            failures gracefully, scaling independently, and integrating cleanly — is what separates good engineers
+            from great ones.
+          </p>
+          <div class="flex flex-wrap gap-2">
+            <span class="pill px-3 py-1.5 rounded-lg text-sm font-medium">Distributed Systems</span>
+            <span class="pill px-3 py-1.5 rounded-lg text-sm font-medium">Microservices</span>
+            <span class="pill px-3 py-1.5 rounded-lg text-sm font-medium">REST APIs</span>
+            <span class="pill px-3 py-1.5 rounded-lg text-sm font-medium">System Design</span>
+            <span class="pill px-3 py-1.5 rounded-lg text-sm font-medium">System Integrations</span>
+          </div>
+        </div>
+
+        <div class="card rounded-2xl p-6 reveal">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="w-10 h-10 rounded-xl g-bg flex items-center justify-center text-lg flex-shrink-0">📡</div>
+            <h3 class="text-white font-bold">Messaging &amp; Streaming</h3>
+          </div>
+          <p class="text-slate-500 text-xs leading-relaxed mb-4">
+            Asynchronous communication is the glue of resilient microservices. Kafka powers high-throughput event
+            streaming across services; RabbitMQ handles reliable task queuing; Redis delivers the low-latency
+            caching that keeps response times razor-sharp at scale.
+          </p>
+          <div class="flex flex-wrap gap-2">
+            <span class="pill px-3 py-1.5 rounded-lg text-sm font-medium">Apache Kafka</span>
+            <span class="pill px-3 py-1.5 rounded-lg text-sm font-medium">RabbitMQ</span>
+            <span class="pill px-3 py-1.5 rounded-lg text-sm font-medium">Redis</span>
+          </div>
+        </div>
+
+        <div class="card rounded-2xl p-6 reveal">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="w-10 h-10 rounded-xl g-bg flex items-center justify-center text-lg flex-shrink-0">🛠️</div>
+            <h3 class="text-white font-bold">DevOps &amp; Tools</h3>
+          </div>
+          <p class="text-slate-500 text-xs leading-relaxed mb-4">
+            Shipping code is only half the job. Containerised environments eliminate "works on my machine" for good,
+            automated pipelines enforce quality gates on every commit, and version control keeps entire teams moving
+            fast without stepping on each other.
+          </p>
+          <div class="flex flex-wrap gap-2">
+            <span class="pill px-3 py-1.5 rounded-lg text-sm font-medium">Git</span>
+            <span class="pill px-3 py-1.5 rounded-lg text-sm font-medium">Docker</span>
+            <span class="pill px-3 py-1.5 rounded-lg text-sm font-medium">CI/CD</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ACHIEVEMENTS -->
+  <section id="achievements" class="py-28 px-6 relative" style="background:rgba(12,13,28,0.55);">
+    <div class="max-w-7xl mx-auto">
+      <div class="relative mb-14 overflow-hidden">
+        <span class="sec-num">04</span>
+        <span class="text-[11px] font-semibold tracking-[0.18em] text-indigo-400 uppercase block mb-2">Impact</span>
+        <h2 class="text-4xl md:text-5xl font-black text-white">Achievements</h2>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-5 mb-8">
+        <div class="card rounded-2xl p-8 text-center group reveal">
+          <div class="text-5xl font-black g-text mb-4 transition-transform group-hover:scale-110">14→1</div>
+          <div class="text-slate-200 font-semibold mb-2">Days Reduced</div>
+          <p class="text-slate-500 text-sm leading-relaxed">Safaricom paybill merchant onboarding from 14 days to 24 hours</p>
+        </div>
+        <div class="card rounded-2xl p-8 text-center group reveal">
+          <div class="text-5xl font-black g-text mb-4 transition-transform group-hover:scale-110">500K+</div>
+          <div class="text-slate-200 font-semibold mb-2">Monthly Transactions</div>
+          <p class="text-slate-500 text-sm leading-relaxed">Tala Credit-as-a-Service API throughput, month on month</p>
+        </div>
+        <div class="card rounded-2xl p-8 text-center group reveal">
+          <div class="text-5xl font-black g-text mb-4 transition-transform group-hover:scale-110">1M+</div>
+          <div class="text-slate-200 font-semibold mb-2">Users Impacted</div>
+          <p class="text-slate-500 text-sm leading-relaxed">Scalable fintech systems across East Africa, consistently delivered</p>
+        </div>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-5">
+
+        <!-- Wallet as a Service -->
+        <div class="card rounded-2xl p-6 reveal">
+          <div class="flex items-start gap-4 mb-4">
+            <div class="w-11 h-11 rounded-xl g-bg flex items-center justify-center flex-shrink-0">
+              <svg width="18" height="18" fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/>
+              </svg>
+            </div>
+            <div class="flex-1">
+              <div class="flex items-center justify-between gap-2 flex-wrap">
+                <h3 class="text-white font-semibold">Wallet as a Service</h3>
+                <span class="text-[11px] font-semibold text-indigo-400 px-2 py-0.5 rounded-full" style="background:rgba(99,102,241,0.1); border:1px solid rgba(99,102,241,0.2);">2026 · Tala</span>
+              </div>
+              <p class="text-indigo-400 text-xs font-medium mt-0.5">Savings with Yield Capabilities</p>
+            </div>
+          </div>
+          <p class="text-slate-400 text-sm leading-relaxed mb-3">
+            Architected and delivered a Wallet-as-a-Service platform enabling customers to open savings wallets and earn
+            competitive interest yields on their balances. The system supports real-time interest accrual, automated
+            daily yield calculations, and seamless withdrawals — bringing a bank-grade savings experience to underserved
+            customers across emerging markets.
+          </p>
+          <ul class="space-y-1.5">
+            <li class="flex gap-2 text-slate-500 text-xs"><span class="text-indigo-500 flex-shrink-0">▸</span>Real-time interest accrual engine with configurable yield rates</li>
+            <li class="flex gap-2 text-slate-500 text-xs"><span class="text-indigo-500 flex-shrink-0">▸</span>Automated daily compounding and transparent earnings dashboard for customers</li>
+            <li class="flex gap-2 text-slate-500 text-xs"><span class="text-indigo-500 flex-shrink-0">▸</span>Scalable microservice architecture handling high-concurrency deposit and withdrawal flows</li>
+          </ul>
+        </div>
+
+        <!-- Loan Underwriting AI Agent -->
+        <div class="card rounded-2xl p-6 reveal">
+          <div class="flex items-start gap-4 mb-4">
+            <div class="w-11 h-11 rounded-xl g-bg flex items-center justify-center flex-shrink-0">
+              <svg width="18" height="18" fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17H3a2 2 0 01-2-2V5a2 2 0 012-2h14a2 2 0 012 2v10a2 2 0 01-2 2h-2"/>
+              </svg>
+            </div>
+            <div class="flex-1">
+              <div class="flex items-center justify-between gap-2 flex-wrap">
+                <h3 class="text-white font-semibold">Loan Underwriting AI Agent</h3>
+                <span class="text-[11px] font-semibold text-indigo-400 px-2 py-0.5 rounded-full" style="background:rgba(99,102,241,0.1); border:1px solid rgba(99,102,241,0.2);">2025 · Tala</span>
+              </div>
+              <p class="text-indigo-400 text-xs font-medium mt-0.5">AI-Powered Business Credit Assessment</p>
+            </div>
+          </div>
+          <p class="text-slate-400 text-sm leading-relaxed mb-3">
+            Built an AI-powered loan underwriting agent that assesses business creditworthiness using photo evidence —
+            enabling faster, more inclusive lending decisions for small businesses that lack traditional credit history.
+            The agent analyses business premises, inventory, and operational signals from images to generate structured
+            risk profiles and underwriting recommendations.
+          </p>
+          <ul class="space-y-1.5">
+            <li class="flex gap-2 text-slate-500 text-xs"><span class="text-indigo-500 flex-shrink-0">▸</span>Computer vision pipeline for extracting business signals from photo submissions</li>
+            <li class="flex gap-2 text-slate-500 text-xs"><span class="text-indigo-500 flex-shrink-0">▸</span>AI-driven risk scoring model reducing manual review time significantly</li>
+            <li class="flex gap-2 text-slate-500 text-xs"><span class="text-indigo-500 flex-shrink-0">▸</span>Expanded credit access for informal businesses across East Africa</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- PROJECTS -->
+  <section id="projects" class="py-28 px-6 relative overflow-hidden">
+    <div class="orb w-[420px] h-[420px] bg-violet-600/[0.08] top-0 right-0 -translate-y-1/4"></div>
+    <div class="max-w-7xl mx-auto relative z-10">
+      <div class="relative mb-14 overflow-hidden">
+        <span class="sec-num">05</span>
+        <span class="text-[11px] font-semibold tracking-[0.18em] text-indigo-400 uppercase block mb-2">AI &amp; Innovation</span>
+        <h2 class="text-4xl md:text-5xl font-black text-white">Projects</h2>
+      </div>
+
+      <!-- Ground Signal -->
+      <div class="card rounded-2xl p-8 reveal">
+        <div class="flex flex-col lg:flex-row gap-8">
+
+          <!-- Left: project info -->
+          <div class="flex-1">
+            <div class="flex flex-wrap items-start justify-between gap-4 mb-5">
+              <div>
+                <div class="flex items-center gap-2 mb-2">
+                  <span class="text-[11px] font-semibold text-violet-400 px-2 py-0.5 rounded-full"
+                        style="background:rgba(139,92,246,0.12); border:1px solid rgba(139,92,246,0.25);">Hackathon · AI</span>
+                  <span class="text-[11px] font-semibold text-slate-500 px-2 py-0.5 rounded-full"
+                        style="background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.07);">2026</span>
+                </div>
+                <h3 class="text-2xl font-bold text-white">Ground Signal</h3>
+                <p class="text-indigo-400 font-medium text-sm mt-1">AI-Powered Community Conflict Detection &amp; Alert System</p>
+              </div>
+              <a href="https://github.com/mutende/ground-signal" target="_blank" rel="noopener noreferrer"
+                 class="btn-ghost text-xs px-4 py-2 rounded-lg flex-shrink-0">
+                <svg width="14" height="14" fill="white" viewBox="0 0 24 24">
+                  <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                </svg>
+                View on GitHub
               </a>
             </div>
+
+            <p class="text-slate-300 text-sm leading-relaxed mb-5">
+              Ground Signal is an AI-augmented civic tech platform built to protect communities at risk of conflict.
+              It enables anonymous, low-bandwidth reporting of tensions and rumours via web and USSD — reaching people
+              in areas where internet access is limited. An intelligent rule-based escalation engine analyses incoming
+              signals in real time and automatically alerts Peace Agents when threat patterns cross defined thresholds,
+              enabling faster on-the-ground response before situations deteriorate.
+            </p>
+
+            <p class="text-slate-400 text-sm leading-relaxed mb-6">
+              The platform bridges the gap between communities experiencing conflict signals and the NGOs and peace
+              organisations equipped to act on them — all through a lightweight, privacy-first architecture designed
+              for real-world deployment in underserved regions.
+            </p>
+
+            <!-- Feature highlights -->
+            <div class="grid sm:grid-cols-2 gap-3 mb-6">
+              <div class="flex gap-3 items-start">
+                <span class="text-indigo-500 mt-0.5 flex-shrink-0">▸</span>
+                <div>
+                  <div class="text-slate-200 text-xs font-semibold mb-0.5">Anonymous Reporting</div>
+                  <div class="text-slate-500 text-xs leading-relaxed">Web and USSD channels ensure anyone can report safely, even without a smartphone or reliable internet.</div>
+                </div>
+              </div>
+              <div class="flex gap-3 items-start">
+                <span class="text-indigo-500 mt-0.5 flex-shrink-0">▸</span>
+                <div>
+                  <div class="text-slate-200 text-xs font-semibold mb-0.5">AI Escalation Engine</div>
+                  <div class="text-slate-500 text-xs leading-relaxed">Rule-based AI analyses signal frequency and severity, auto-escalating to Peace Agents when risk thresholds are breached.</div>
+                </div>
+              </div>
+              <div class="flex gap-3 items-start">
+                <span class="text-indigo-500 mt-0.5 flex-shrink-0">▸</span>
+                <div>
+                  <div class="text-slate-200 text-xs font-semibold mb-0.5">Peace Agent Dashboard</div>
+                  <div class="text-slate-500 text-xs leading-relaxed">Dedicated review interface for Peace Agents to triage, verify, and respond to community alerts in real time.</div>
+                </div>
+              </div>
+              <div class="flex gap-3 items-start">
+                <span class="text-indigo-500 mt-0.5 flex-shrink-0">▸</span>
+                <div>
+                  <div class="text-slate-200 text-xs font-semibold mb-0.5">NGO Partner Dashboards</div>
+                  <div class="text-slate-500 text-xs leading-relaxed">Partner organisations get visibility into conflict signal trends and geographic hotspots to coordinate field response.</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Tech stack -->
+            <div class="flex flex-wrap gap-1.5">
+              <span class="tag">TypeScript</span>
+              <span class="tag">React</span>
+              <span class="tag">Vite</span>
+              <span class="tag">Fastify</span>
+              <span class="tag">PostgreSQL</span>
+              <span class="tag">USSD</span>
+              <span class="tag">AI Escalation</span>
+              <span class="tag">Civic Tech</span>
+            </div>
           </div>
 
-          <div class="col-lg-3 col-md-4 col-xs-6">
-            <div class="client-logo">
-              <a href="https://wailertech.co.ke/" target="_blank">
-              <img src="img/inventory.svg" class="img-fluid" alt="">
-              <p>Inventory App</p>
-             </a>
+          <!-- Right: stat pills -->
+          <div class="lg:w-52 flex lg:flex-col gap-4 flex-wrap lg:flex-nowrap justify-center lg:justify-start">
+            <div class="stat-c rounded-2xl p-5 text-center flex-1 lg:flex-none">
+              <div class="text-2xl font-black g-text mb-1">USSD</div>
+              <div class="text-slate-400 text-xs">Low-bandwidth access</div>
             </div>
-          </div>    
-          
-          <div class="col-lg-3 col-md-4 col-xs-6">
-            <div class="client-logo">
-              <a href="https://github.com/mutende/Word-Analysis.git" target="_blank" class="py-2">
-              <img src="img/intro-img.svg" class="img-fluid" alt="">
-              <p>Word & network analyser.</p>
-             </a>
+            <div class="stat-c rounded-2xl p-5 text-center flex-1 lg:flex-none">
+              <div class="text-2xl font-black g-text mb-1">AI</div>
+              <div class="text-slate-400 text-xs">Rule-based escalation</div>
             </div>
-          </div>  
-
-          <div class="col-lg-3 col-md-4 col-xs-6">
-            <a href="https://github.com/mutende" target="_blank" class="py-2">
-            <div class="client-logo">
-              <p>More projects are on my github account</p>
+            <div class="stat-c rounded-2xl p-5 text-center flex-1 lg:flex-none">
+              <div class="text-2xl font-black g-text mb-1">3</div>
+              <div class="text-slate-400 text-xs">Stakeholder portals</div>
             </div>
-            </a>
-          </div>
-
-        </div>
-      </div>
-      </section>
-
-
-
-
-    <!--==========================
-      Contact Section
-    ============================-->
-    <section id="contact">
-      <div class="container">
-
-        <div class="section-header">
-          <h3>Contact Me</h3>
-        </div>
-
-        <div class="row wow fadeInUp">
-
-
-          <div class="col-lg-6">
-            <div class="row">
-              <div class="col-md-2 info">                
-                <p> <a href="https://github.com/mutende" target="_blank"><i class="fa fa-github"></i></a></p>
-              </div>
-              <div class="col-md-2 info">
-              
-                <p> <a href="https://www.linkedin.com/in/elvis-ian-mutende-887675104/" target="_blank">  <i class="fa fa-linkedin"></i></a></p>
-              </div>
-
-              <div class="col-md-2 info">
-    
-                <p> <a href="https://twitter.com/Elvis_Mutende" target="_blank"> <i class="fa fa-twitter"></i></a></p>
-              </div>
-              
-              <div class="col-md-2 info">
-               
-                <p> <a href="https://www.facebook.com/elvis.mutende/" target="_blank"><i class="fa fa-facebook"></i></a></p>
-              </div> 
-              
-              <div class="col-md-2 info">
-                
-                <p> <a href="https://Instagram.com/elvis_mutende" target="_blank"><i class="fa fa-instagram"></i></a></p>
-              </div>
-
-              
-              
-            </div>
-           
-            </div>
-
-            <div class="col-lg-6">
-              <div class="row">
-                <div class="col-md-6 info">
-                  <i class="fa fa-envelope-o"></i>
-                  <p>elvismutende@gmail.com</p>
-                </div>
-                <div class="col-md-6 info">
-                  <i class="fa fa-phone"></i>
-                  <p>+254 717 796 059</p>
-                </div>
-                </div>
-
-          
           </div>
 
         </div>
-
-      </div>
-    </section><!-- #contact -->
-
-  </main>
-
-  <!--==========================
-    Footer
-  ============================-->
-  <footer id="footer">
-    <div class="container">
-      <div class="copyright">
-        &copy; <script> document.write(new Date().getFullYear())</script> 
-            </div>
-      <div class="credits">
-      Designed by <a href="https://mutende.github.io/">Elvis Mutende</a>
       </div>
     </div>
-  </footer><!-- #footer -->
+  </section>
 
-  <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
-  <div id="preloader"></div>
-  <!-- JavaScript Libraries -->
-  <script src="lib/jquery/jquery.min.js"></script>
-  <script src="lib/jquery/jquery-migrate.min.js"></script>
-  <script src="lib/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="lib/easing/easing.min.js"></script>
-  <script src="lib/mobile-nav/mobile-nav.js"></script>
-  <script src="lib/wow/wow.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
 
-  <!--Main Javascript File -->
-  <script src="js/main.js"></script>
+  <!-- EDUCATION -->
+  <section id="education" class="py-28 px-6 relative overflow-hidden">
+    <div class="orb w-80 h-80 bg-indigo-600/[0.07] bottom-0 left-0"></div>
+    <div class="max-w-7xl mx-auto relative z-10">
+      <div class="relative mb-14 overflow-hidden">
+        <span class="sec-num">06</span>
+        <span class="text-[11px] font-semibold tracking-[0.18em] text-indigo-400 uppercase block mb-2">Background</span>
+        <h2 class="text-4xl md:text-5xl font-black text-white">Education</h2>
+      </div>
+      <div class="max-w-xl">
+        <div class="card rounded-2xl p-8 reveal">
+          <div class="flex gap-5 items-start mb-4">
+            <div class="w-12 h-12 rounded-2xl g-bg flex items-center justify-center text-2xl flex-shrink-0">🎓</div>
+            <div>
+              <h3 class="text-white font-bold text-lg">BSc. Computer Science</h3>
+              <p class="text-indigo-400 font-medium text-sm mt-1">Egerton University, Njoro</p>
+              <p class="text-slate-500 text-sm mt-1">2015 – 2019</p>
+            </div>
+          </div>
+          <p class="text-slate-400 text-sm leading-relaxed">
+            Built a strong foundation in software engineering, algorithms, data structures, and systems programming.
+            Developed an early passion for backend systems and distributed computing that has shaped my entire career in fintech and beyond.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- CONTACT -->
+  <section id="contact" class="py-28 px-6 relative overflow-hidden" style="background:rgba(12,13,28,0.55);">
+    <div class="orb w-[500px] h-[500px] bg-indigo-600/[0.09] bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2"></div>
+
+    <div class="max-w-4xl mx-auto text-center relative z-10">
+      <div class="reveal">
+        <span class="text-[11px] font-semibold tracking-[0.18em] text-indigo-400 uppercase block mb-4">Get in Touch</span>
+        <h2 class="text-4xl md:text-5xl font-black text-white mb-6">
+          Let's Work<br><span class="g-text">Together.</span>
+        </h2>
+        <p class="text-slate-400 text-lg max-w-xl mx-auto mb-12 leading-relaxed">
+          Open to senior engineering roles, technical leadership positions, and high-impact backend projects.
+          Let's build something great.
+        </p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 md:grid-cols-4 gap-4 mb-10">
+        <a href="mailto:elvismutende@gmail.com" class="card rounded-2xl p-5 flex flex-col items-center gap-3 group reveal">
+          <div class="w-11 h-11 rounded-xl g-bg flex items-center justify-center transition-transform group-hover:scale-110">
+            <svg width="18" height="18" fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+            </svg>
+          </div>
+          <span class="text-slate-500 text-xs font-medium">Email</span>
+          <span class="text-slate-300 text-xs text-center break-all">elvismutende@gmail.com</span>
+        </a>
+
+        <a href="https://linkedin.com/in/elvis-mutende-887675104" target="_blank" rel="noopener noreferrer"
+           class="card rounded-2xl p-5 flex flex-col items-center gap-3 group reveal">
+          <div class="w-11 h-11 rounded-xl g-bg flex items-center justify-center transition-transform group-hover:scale-110">
+            <svg width="18" height="18" fill="white" viewBox="0 0 24 24">
+              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+            </svg>
+          </div>
+          <span class="text-slate-500 text-xs font-medium">LinkedIn</span>
+          <span class="text-slate-300 text-xs">Elvis Mutende</span>
+        </a>
+
+        <a href="https://github.com/mutende" target="_blank" rel="noopener noreferrer"
+           class="card rounded-2xl p-5 flex flex-col items-center gap-3 group reveal">
+          <div class="w-11 h-11 rounded-xl g-bg flex items-center justify-center transition-transform group-hover:scale-110">
+            <svg width="18" height="18" fill="white" viewBox="0 0 24 24">
+              <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+            </svg>
+          </div>
+          <span class="text-slate-500 text-xs font-medium">GitHub</span>
+          <span class="text-slate-300 text-xs">mutende</span>
+        </a>
+
+        <a href="tel:+254717796059" class="card rounded-2xl p-5 flex flex-col items-center gap-3 group reveal">
+          <div class="w-11 h-11 rounded-xl g-bg flex items-center justify-center transition-transform group-hover:scale-110">
+            <svg width="18" height="18" fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+            </svg>
+          </div>
+          <span class="text-slate-500 text-xs font-medium">Phone</span>
+          <span class="text-slate-300 text-xs">+254 717 796059</span>
+        </a>
+      </div>
+
+      <a href="mailto:elvismutende@gmail.com" class="btn-primary text-base px-9 py-4 rounded-xl reveal">
+        Say Hello
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+        </svg>
+      </a>
+    </div>
+  </section>
+
+
+  <!-- FOOTER -->
+  <footer class="py-8 px-6" style="border-top:1px solid rgba(255,255,255,0.05);">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+      <p class="text-slate-600 text-sm">© <span id="footer-year">2026</span> Elvis Mutende — Nairobi, Kenya</p>
+      <div class="flex items-center gap-6">
+        <a href="https://linkedin.com/in/elvis-mutende-887675104" target="_blank" rel="noopener noreferrer"
+           class="text-slate-600 hover:text-indigo-400 text-sm transition-colors">LinkedIn</a>
+        <a href="https://github.com/mutende" target="_blank" rel="noopener noreferrer"
+           class="text-slate-600 hover:text-indigo-400 text-sm transition-colors">GitHub</a>
+        <a href="mailto:elvismutende@gmail.com"
+           class="text-slate-600 hover:text-indigo-400 text-sm transition-colors">Email</a>
+      </div>
+    </div>
+  </footer>
+
+
+  <script>
+    function toggleMenu() {
+      document.getElementById('m-menu').classList.toggle('open');
+    }
+    function closeMenu() {
+      document.getElementById('m-menu').classList.remove('open');
+    }
+    document.addEventListener('click', e => {
+      const menu = document.getElementById('m-menu');
+      const ham  = document.getElementById('ham');
+      if (!menu.contains(e.target) && !ham.contains(e.target)) closeMenu();
+    });
+
+    // Scroll reveal
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('revealed');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Dynamic year + experience
+    (function() {
+      const yr = new Date().getFullYear();
+      document.getElementById('footer-year').textContent = yr;
+      const exp = yr - 2021; // started 2021 → 5 in 2026, 6 in 2027, etc.
+      document.querySelectorAll('#yrs-exp, .yrs-exp').forEach(el => el.textContent = exp + '+');
+    })();
+
+    // Nav solidifies on scroll
+    const nav = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      nav.style.background = window.scrollY > 60
+        ? 'rgba(7,8,15,0.97)'
+        : 'rgba(7,8,15,0.88)';
+    }, { passive: true });
+  </script>
 
 </body>
 </html>
